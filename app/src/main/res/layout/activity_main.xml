@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="218dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="12dp"
+        android:text="MixMarket"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAllProduct"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonAllProduct"
+        android:layout_width="289dp"
+        android:layout_height="45dp"
+        android:text="Voir tous les produits"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="84dp"
+        tools:ignore="MissingConstraints" />
+
+    <ScrollView
+        android:layout_width="363dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAllProduct">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/Cat1"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:text="Cat1" />
+
+            <Button
+                android:id="@+id/Cat2"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:text="Cat2" />
+
+            <Button
+                android:id="@+id/Cat3"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:text="Cat3" />
+
+            <Button
+                android:id="@+id/Cat4"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:text="Cat4" />
+        </LinearLayout>
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="370dp"
+        android:layout_height="328dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="224dp"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/RandomProductName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="produit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/RandomProductPrice"
+            android:layout_width="43dp"
+            android:layout_height="23dp"
+            android:text="Prix"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/RandomProductName"
+            tools:layout_editor_absoluteY="293dp" />
+
+        <TextView
+            android:id="@+id/RandomeProductTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Produit Aléatoire"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="9dp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="277dp"
+            android:layout_height="233dp"
+            app:layout_constraintBottom_toTopOf="@+id/RandomProductName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/RandomeProductTitle"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
