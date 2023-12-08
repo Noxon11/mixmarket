@@ -22,7 +22,7 @@
         android:layout_width="276dp"
         android:layout_height="48dp"
         android:text="Voir tous les produits"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,16 +79,10 @@
             app:layout_constraintTop_toBottomOf="@+id/RandomeProductTitle"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-        <!-- <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />-->
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/scrollView"
         android:layout_width="363dp"
         android:layout_height="60dp"
         android:layout_marginBottom="16dp"
