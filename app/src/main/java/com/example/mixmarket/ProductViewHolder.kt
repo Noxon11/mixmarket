@@ -13,9 +13,9 @@ class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(product: Product) {
 
-        Picasso.get().load(product.imageUrl).into(imageView)
+        Picasso.get().load(product.image).into(imageView)
 
         titleTextView.text = product.title
-        priceTextView.text = "$${product.price}"
+        priceTextView.text = "${product.price}€"
     }
 }

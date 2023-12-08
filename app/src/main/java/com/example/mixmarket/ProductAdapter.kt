@@ -15,6 +15,8 @@ class ProductAdapter(private val products: List<Product>) : RecyclerView.Adapter
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = products[position]
         holder.bind(product)
+        System.out.print(product)
+
     }
 
     override fun getItemCount(): Int {
