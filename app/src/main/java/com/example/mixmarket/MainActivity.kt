@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
 
         val buttonAllProduct = findViewById<Button>(R.id.buttonAllProduct)
         buttonAllProduct.setOnClickListener {
-            // Récupérer la liste de catégories depuis l'API
             GlobalScope.launch(Dispatchers.Main) {
                         val intent = Intent(this@MainActivity, ListProduct::class.java)
                         startActivity(intent)
@@ -39,7 +38,6 @@ class MainActivity : AppCompatActivity() {
                 val categories = ApiClient.categoryService.getCategories()
                 createCategoryButtons(categories)
             } catch (e: Exception) {
-                // Gérer les erreurs d'appel API pour les catégories
                 e.printStackTrace()
             }
         }
@@ -50,7 +48,6 @@ class MainActivity : AppCompatActivity() {
             val button = Button(this)
             button.text = category
             button.setOnClickListener {
-                // Filtrer les produits en fonction du nom de la catégorie
                 val intent = Intent(this@MainActivity, ListProduct::class.java)
                 intent.putExtra("categoryName", category)
                 startActivity(intent)

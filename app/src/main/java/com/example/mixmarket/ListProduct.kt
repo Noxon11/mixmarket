@@ -26,14 +26,8 @@ class ListProduct : AppCompatActivity(), ProductClickListener {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         categoryContainer = findViewById(R.id.categoryContainer)
-
-        // Récupérer le nom de la catégorie de l'intent
         categoryName = intent.getStringExtra("categoryName") ?: ""
-
-        // Ajouter le bouton "All" pour désélectionner le filtre
         addAllButton()
-
-        // Récupérer les catégories et les produits depuis l'API
         fetchCategories()
         fetchProducts()
     }
@@ -42,7 +36,6 @@ class ListProduct : AppCompatActivity(), ProductClickListener {
         val allButton = Button(this)
         allButton.text = "All"
         allButton.setOnClickListener {
-            // Afficher tous les produits sans filtre
             updateRecyclerView(allProducts)
         }
         categoryContainer.addView(allButton)
@@ -54,7 +47,6 @@ class ListProduct : AppCompatActivity(), ProductClickListener {
                 val categories = ApiClient.categoryService.getCategories()
                 createCategoryButtons(categories)
             } catch (e: Exception) {
-                // Gérer les erreurs d'appel API pour les catégories
                 e.printStackTrace()
             }
         }
@@ -65,7 +57,6 @@ class ListProduct : AppCompatActivity(), ProductClickListener {
             val button = Button(this)
             button.text = category
             button.setOnClickListener {
-                // Filtre les produits en fonction de la catégorie quand on clique dessus
                 val filteredProducts = filterProductsByCategory(category)
                 updateRecyclerView(filteredProducts)
             }
@@ -76,20 +67,15 @@ class ListProduct : AppCompatActivity(), ProductClickListener {
     private fun fetchProducts() {
         lifecycleScope.launch {
             try {
-                // Récupérer tous les produits depuis l'API
                 allProducts = ApiClient.productService.getProducts()
-
-                // Si le nom de la catégorie n'est pas vide, appliquer le filtre
                 if (categoryName.isNotEmpty()) {
                     val filteredProducts = filterProductsByCategory(categoryName)
                     updateRecyclerView(filteredProducts)
                 } else {
-                    // Sinon, afficher tous les produits
                     updateRecyclerView(allProducts)
                 }
 
             } catch (e: Exception) {
-                // Gérer les erreurs d'appel API pour les produits
                 e.printStackTrace()
             }
         }

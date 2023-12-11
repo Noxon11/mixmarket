@@ -5,12 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -37,6 +37,8 @@ class CartActivity : AppCompatActivity(), CartAdapter.CartItemListener {
         val checkoutButton: Button = findViewById(R.id.checkoutButton)
         checkoutButton.setOnClickListener {
             Toast.makeText(this, "Processus de paiement à implémenter", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, CheckoutActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -45,7 +47,7 @@ class CartActivity : AppCompatActivity(), CartAdapter.CartItemListener {
             val cartItems = cartManager.getCart()
             withContext(Dispatchers.Main) {
                 cartAdapter.setCartItems(cartItems)
-
+                displayTotalPrice()
             }
         }
     }
@@ -59,28 +61,24 @@ class CartActivity : AppCompatActivity(), CartAdapter.CartItemListener {
         lifecycleScope.launch(Dispatchers.IO) {
             val updatedCartItem = cartItem.copy(quantity = cartItem.quantity + 1)
             cartManager.updateCartItem(updatedCartItem)
-            //displayCartItems()
-
-            val cartItems = cartManager.getCart()
-            withContext(Dispatchers.Main) {
-                cartAdapter.setCartItems(cartItems)
-            }
+            displayCartItems()
         }
     }
 
     override fun onRemoveClick(cartItem: CartItem) {
         lifecycleScope.launch(Dispatchers.IO) {
 
-            // sinon, supprimez l'article du panier
             if (cartItem.quantity > 1) {
                 // Décrémentez la quantité
                 val updatedCartItem = cartItem.copy(quantity = cartItem.quantity - 1)
                 cartManager.updateCartItem(updatedCartItem)
+
             } else {
                 // Supprimez l'article du panier
                 cartManager.deleteCartItem(cartItem)
             }
             displayCartItems()
+
         }
     }
 
@@ -91,4 +89,10 @@ class CartActivity : AppCompatActivity(), CartAdapter.CartItemListener {
         }
     }
 
+    private suspend fun displayTotalPrice() {
+        val cartItems = cartManager.getAllCartItems()
+        val totalPrice = cartItems.sumOf { it.productPrice * it.quantity }
+        val totalPriceTextView: TextView = findViewById(R.id.totalPriceTextView)
+        totalPriceTextView.text = "Total: %.2f €".format(totalPrice)
+    }
 }

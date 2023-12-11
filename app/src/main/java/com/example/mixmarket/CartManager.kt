@@ -70,6 +70,9 @@ class CartManager private constructor(context: Context) {
             }
         }
     }
+    suspend fun getAllCartItems(): List<CartItem>{
+        return cartDao.getAllCartItems()
+    }
 
     companion object {
         private var INSTANCE: CartManager? = null

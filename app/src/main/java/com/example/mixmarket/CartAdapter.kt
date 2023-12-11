@@ -16,7 +16,6 @@ class CartAdapter(private val cartItemListener: CartItemListener) : RecyclerView
     private var cartItems: List<CartItem> = listOf()
 
     fun setCartItems(items: List<CartItem>) {
-        // Aggregate items by ID and calculate total quantity
         val aggregatedList = items.groupBy { it.productId }
             .map { (productId, items) ->
                 val totalQuantity = items.sumOf { it.quantity }
