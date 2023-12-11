@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListProduct">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".CartActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -19,9 +17,19 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:src="@mipmap/logo_foreground"
-            android:clickable="true"
+            android:layout_gravity="left"
             android:onClick="onHomeClick"
-            android:layout_gravity="left"/>
+            android:clickable="true"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MixMarket"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center"/>
 
         <!-- Image à droite -->
         <ImageView
@@ -29,36 +37,23 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:src="@drawable/shopping_cart"
-            android:clickable="true"
-            android:onClick="onBasketClick"
             android:layout_margin="8dp"
             android:layout_gravity="right"/>
 
     </androidx.appcompat.widget.Toolbar>
 
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
-        android:layout_marginTop="8dp">
-
-        <LinearLayout
-            android:id="@+id/categoryContainer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-        </LinearLayout>
-    </HorizontalScrollView>
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/cartRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/horizontalScrollView"
-        android:clipToPadding="false"
-        android:padding="16dp" />
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/checkoutButton"/>
 
+    <Button
+        android:id="@+id/checkoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Passer à la caisse"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>

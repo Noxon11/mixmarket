@@ -11,5 +11,6 @@ object ApiClient {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        val productService: ProductService = retrofit.create(ProductService::class.java)
+        val productService: ApiService = retrofit.create(ApiService::class.java)
+        val categoryService: ApiService = retrofit.create(ApiService::class.java)
     }

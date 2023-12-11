@@ -7,120 +7,142 @@
     tools:context=".MainActivity">
 
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="218dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="16dp"
-        android:text="MixMarket"
-        app:layout_constraintEnd_toEndOf="parent"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/homeImg"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@mipmap/logo_foreground"
+            android:layout_gravity="left"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MixMarket"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center"/>
+
+        <!-- Image à droite -->
+        <ImageView
+            android:id="@+id/basketImg"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/shopping_cart"
+            android:clickable="true"
+            android:layout_margin="8dp"
+            android:onClick="onBasketClick"
+            android:layout_gravity="right"/>
+
+    </androidx.appcompat.widget.Toolbar>
 
     <Button
         android:id="@+id/buttonAllProduct"
-        android:layout_width="276dp"
-        android:layout_height="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Voir tous les produits"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.1"
+        android:textSize="16dp"
+        android:layout_margin="16dp"/>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="370dp"
-        android:layout_height="328dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <HorizontalScrollView
+        android:id="@+id/categoryScrollView"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAllProduct"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintStart_toStartOf="parent">
 
+        <LinearLayout
+            android:id="@+id/categoryContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <!-- bouton place dynamiquement -->
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginTop="248dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/categoryScrollView"
+        tools:layout_editor_absoluteX="40dp">
+
+        <TextView
+            android:id="@+id/RandomProductTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="12dp"
+            android:text="Produit recommandé pour vous"
+            android:layout_margin="8dp"/>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="320dp"
+            android:layout_height="240dp"
+            android:layout_gravity="center"
+            android:contentDescription="Random product"
+            android:scaleType="fitCenter"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
         <TextView
             android:id="@+id/RandomProductName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginBottom="12dp"
-            android:text="produit"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent" />
-
+            android:text="Product Name"
+            android:layout_margin="8dp"/>
         <TextView
             android:id="@+id/RandomProductPrice"
             android:layout_width="43dp"
             android:layout_height="23dp"
+            android:layout_gravity="center"
             android:text="Prix"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/RandomProductName"
+            app:layout_constraintStart_toEndOf="@+id/RandomProductTitle"
             tools:layout_editor_absoluteY="293dp" />
+
+        <View
+            android:id="@+id/spacer"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/linearLayout"
+            android:layout_margin="8dp"
+            android:alpha="0.5"
+            android:background="@android:color/darker_gray" />
 
         <TextView
             android:id="@+id/RandomeProductTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Produit Aléatoire"
+            android:text="Description Produit Aléatoire"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="9dp" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="277dp"
-            android:layout_height="233dp"
-            app:layout_constraintBottom_toTopOf="@+id/RandomProductName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/RandomeProductTitle"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+    </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="363dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/Cat1"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:text="Cat1" />
-
-            <Button
-                android:id="@+id/Cat2"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:text="Cat2" />
-
-            <Button
-                android:id="@+id/Cat3"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:text="Cat3" />
-
-            <Button
-                android:id="@+id/Cat4"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:text="Cat4" />
-
-        </LinearLayout>
-    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
