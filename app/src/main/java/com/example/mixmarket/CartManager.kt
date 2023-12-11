@@ -1,6 +1,7 @@
 package com.example.mixmarket
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Room
 import androidx.room.util.query
 import kotlinx.coroutines.Dispatchers
@@ -11,6 +12,8 @@ class CartManager private constructor(context: Context) {
     private val cartDao: CartDao
 
     init {
+
+        Log.e("MON LOG", "CartManager init")
         val database = Room.databaseBuilder(
             context.applicationContext,
             AppDatabase::class.java, "cart-database"
@@ -43,8 +46,12 @@ class CartManager private constructor(context: Context) {
 
     suspend fun updateCartItem(cartItem: CartItem) {
         withContext(Dispatchers.IO) {
-            cartDao.updateCartItem(cartItem)
-            println(" to ${cartItem.quantity}")
+            val cartItemFromDb = cartDao.getCartItem(cartItem.productId)
+            cartItemFromDb?.let {
+                val updatedCartItem = cartItemFromDb.copy(quantity = cartItem.quantity)
+                cartDao.updateCartItem(updatedCartItem)
+                println(" to ${cartItem.quantity}")
+            }
         }
     }
 

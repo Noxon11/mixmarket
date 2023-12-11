@@ -16,7 +16,6 @@ class ProductViewHolder(itemView: View, private val listener: ProductClickListen
         titleTextView.text = product.title
         priceTextView.text = "${product.price}€"
 
-        // Ajoutez un clic sur l'article
         itemView.setOnClickListener {
             listener.onProductClick(product)
         }

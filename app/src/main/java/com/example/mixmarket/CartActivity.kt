@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -58,7 +59,12 @@ class CartActivity : AppCompatActivity(), CartAdapter.CartItemListener {
         lifecycleScope.launch(Dispatchers.IO) {
             val updatedCartItem = cartItem.copy(quantity = cartItem.quantity + 1)
             cartManager.updateCartItem(updatedCartItem)
-            displayCartItems()
+            //displayCartItems()
+
+            val cartItems = cartManager.getCart()
+            withContext(Dispatchers.Main) {
+                cartAdapter.setCartItems(cartItems)
+            }
         }
     }
 
