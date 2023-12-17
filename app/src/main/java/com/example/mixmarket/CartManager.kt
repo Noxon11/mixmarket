@@ -27,11 +27,11 @@ class CartManager private constructor(context: Context) {
             val existingCartItem = cartDao.getCartItem(product.id)
 
             if (existingCartItem != null) {
-                // Product is already in the cart, increment quantity
+                // produit deja dans le panier, on augmente la quantitée
                 val updatedCartItem = existingCartItem.copy(quantity = existingCartItem.quantity + 1)
                 cartDao.updateCartItem(updatedCartItem)
             } else {
-                // Product is not in the cart, add as a new item
+                // le produit n'est pas dans le panier, on l'ajoute
                 val cartItem = CartItem(
                     productId = product.id,
                     productName = product.title,

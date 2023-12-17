@@ -82,7 +82,7 @@ class ListProduct : AppCompatActivity(), ProductClickListener {
     }
 
     private fun filterProductsByCategory(category: String): List<Product> {
-        // Filtre les produits en fonction de la catégorie
+        // filtre les produits en fonction de la catégorie
         return allProducts.filter { it.category == category }
     }
 
@@ -92,7 +92,7 @@ class ListProduct : AppCompatActivity(), ProductClickListener {
     }
 
     override fun onProductClick(product: Product) {
-        // Ouvrir une activité de détails du produit lorsqu'un produit est cliqué
+        // ouvrir  activité  détails du produit
         val intent = Intent(this, ProductDetail::class.java)
         val bundle = Bundle().apply {
             putParcelable("product", product)

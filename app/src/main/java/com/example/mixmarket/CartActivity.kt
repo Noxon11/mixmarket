@@ -69,12 +69,12 @@ class CartActivity : AppCompatActivity(), CartAdapter.CartItemListener {
         lifecycleScope.launch(Dispatchers.IO) {
 
             if (cartItem.quantity > 1) {
-                // Décrémentez la quantité
+                // Decremente la quantite
                 val updatedCartItem = cartItem.copy(quantity = cartItem.quantity - 1)
                 cartManager.updateCartItem(updatedCartItem)
 
             } else {
-                // Supprimez l'article du panier
+                // Supprime l article du panier
                 cartManager.deleteCartItem(cartItem)
             }
             displayCartItems()
