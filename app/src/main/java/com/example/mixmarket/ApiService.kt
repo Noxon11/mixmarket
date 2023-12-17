@@ -1,6 +1,7 @@
 package com.example.mixmarket
 
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface ApiService {
     @GET("products")
@@ -8,4 +9,7 @@ interface ApiService {
 
     @GET("products/categories")
     suspend fun getCategories(): List<String>
+
+    @GET("products/{id}")
+    suspend fun getRandomProduct(@Path("id") id: Int): Product
 }

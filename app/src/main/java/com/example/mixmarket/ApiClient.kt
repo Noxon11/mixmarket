@@ -13,4 +13,5 @@ object ApiClient {
 
         val productService: ApiService = retrofit.create(ApiService::class.java)
         val categoryService: ApiService = retrofit.create(ApiService::class.java)
+        val randomProductService: ApiService = retrofit.create(ApiService::class.java)
     }
